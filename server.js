@@ -6,7 +6,7 @@ import path from "path";
 const NODE_ENV = process.env.NODE_ENV?.toLowerCase() || "production";
 
 // Define the port number the server will listen on
-const PORT = process.env.PORT || 3000;
+const PORT = Number.parseInt(process.env.PORT, 10) || 3000;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -23,18 +23,23 @@ app.set('views', path.join(__dirname, 'src/views'));
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res) => {
-  const title = 'Home';
-  res.render('home', { title });
+  const title = "Home";
+  res.render("home", { title });
 });
 
 app.get("/organizations", (req, res) => {
-  const title = 'Organizations';
-  res.render('organizations', { title });
+  const title = "Organizations";
+  res.render("organizations", { title });
 });
 
 app.get("/projects", (req, res) => {
-  const title = 'Projects';
-  res.render('projects', { title });
+  const title = "Service Projects";
+  res.render("projects", { title });
+});
+
+app.get("/categories", (req, res) => {
+  const title = "Service Project Categories";
+  res.render("categories", { title });
 });
 
 app.listen(PORT, () => {
