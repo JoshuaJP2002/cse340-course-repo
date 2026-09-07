@@ -22,6 +22,21 @@ app.set('views', path.join(__dirname, 'src/views'));
 // Serve static files from the public directory
 app.use(express.static(path.join(__dirname, "public")));
 
+const getCategories = () => {
+  const categories = [
+    { name: "Environmental", description: "Projects that protect natural spaces." },
+    { name: "Educational", description: "Projects that support learning and mentorship." },
+    { name: "Community Service", description: "Projects that strengthen local communities." },
+    { name: "Health and Wellness", description: "Projects that promote healthy living." }
+  ];
+
+  return categories.map((category, index) => ({
+    ...category,
+    id: index + 1,
+    slug: category.name.toLowerCase().replaceAll(" ", "-")
+  }));
+};
+
 app.get("/", (req, res) => {
   const title = "Home";
   res.render("home", { title });
@@ -39,7 +54,8 @@ app.get("/projects", (req, res) => {
 
 app.get("/categories", (req, res) => {
   const title = "Service Project Categories";
-  res.render("categories", { title });
+  const categories = getCategories();
+  res.render("categories", { title, categories });
 });
 
 app.listen(PORT, () => {
