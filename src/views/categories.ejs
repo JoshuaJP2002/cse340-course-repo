@@ -2,13 +2,16 @@
     <main>
         <h1><%= title %></h1>
         <p>Explore service opportunities by the area of impact that matters most to you.</p>
-        <ul class="category-list">
-            <% categories.forEach((category) => { %>
-                <li id="<%= category.slug %>">
-                    <strong><%= category.id %>. <%= category.name %></strong>
-                    <p><%= category.description %></p>
-                </li>
-            <% }) %>
-        </ul>
+        <% if (categories && categories.length > 0) { %>
+            <ul class="category-list">
+                <% categories.forEach((category) => { %>
+                    <li>
+                        <strong><%= category.category_id %>. <%= category.category_name %></strong>
+                    </li>
+                <% }) %>
+            </ul>
+        <% } else { %>
+            <p>No categories available at this time.</p>
+        <% } %>
     </main>
 <%- include('partials/footer') %>

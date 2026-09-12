@@ -3,10 +3,18 @@
     <main>
         <h1><%= title %></h1>
         <h2>Upcoming Service Projects</h2>
-        <ul>
-            <li>Park Cleanup - Join us to clean local parks and make them beautiful!</li>
-            <li>Community Garden - Help us plant and maintain our community garden!</li>
-            <li>Food Drive - Participate in our annual food drive to support local families!</li>
-        </ul>
+        <% if (projects && projects.length > 0) { %>
+            <ul>
+                <% projects.forEach(project => { %>
+                    <li>
+                        <%= new Date(project.project_date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %>: 
+                        <%= project.title %> 
+                        (<%= project.organization_name %>)
+                    </li>
+                <% }); %>
+            </ul>
+        <% } else { %>
+            <p>No service projects available at this time.</p>
+        <% } %>
     </main>
 <%- include('partials/footer') %>
