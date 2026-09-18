@@ -1,17 +1,26 @@
 <%- include('partials/header') %>
-    <main>
-        <h1><%= title %></h1>
-        <p>Explore service opportunities by the area of impact that matters most to you.</p>
-        <% if (categories && categories.length > 0) { %>
-            <ul class="category-list">
-                <% categories.forEach((category) => { %>
-                    <li>
-                        <strong><%= category.category_id %>. <%= category.category_name %></strong>
-                    </li>
-                <% }) %>
-            </ul>
-        <% } else { %>
-            <p>No categories available at this time.</p>
-        <% } %>
-    </main>
+
+<main>
+    <h1><%= title %></h1>
+
+    <p>Explore service opportunities by the area of impact that matters most to you.</p>
+
+    <% if (categories && categories.length > 0) { %>
+        <ul class="category-list">
+            <% categories.forEach((category) => { %>
+                <li>
+                    <strong>
+                        <%= category.category_id %>.
+                        <a href="/category/<%= category.category_id %>">
+                            <%= category.category_name %>
+                        </a>
+                    </strong>
+                </li>
+            <% }) %>
+        </ul>
+    <% } else { %>
+        <p>No categories available at this time.</p>
+    <% } %>
+</main>
+
 <%- include('partials/footer') %>
