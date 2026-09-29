@@ -1,28 +1,9 @@
-Create table organization (
-	organization_id serial primary key,
-	name varchar(150) not null,
-	description text not null,
-	contact_email varchar(255) not null,
-	logo_filename varchar(255) not null
-);
-
-INSERT INTO organization (name, description, contact_email, logo_filename)
-VALUES
-('BrightFuture Builders', 'A nonprofit focused on improving community infrastructure through sustainable construction projects.', 'info@brightfuturebuilders.org', 'brightfuture-logo.png'),
-('GreenHarvest Growers', 'An urban farming collective promoting food sustainability and education in local neighborhoods.', 'contact@greenharvest.org', 'greenharvest-logo.png'),
-('UnityServe Volunteers', 'A volunteer coordination group supporting local charities and service initiatives.', 'hello@unityserve.org', 'unityserve-logo.png');
-
-CREATE TABLE categories (
-    category_id SERIAL PRIMARY KEY,
-    category_name VARCHAR(100) NOT NULL UNIQUE
-);
-
 CREATE TABLE organization (
-	organization_id serial primary key,
-	name varchar(150) not null,
-	description text not null,
-	contact_email varchar(255) not null,
-	logo_filename varchar(255) not null
+    organization_id SERIAL PRIMARY KEY,
+    name VARCHAR(150) NOT NULL,
+    description TEXT NOT NULL,
+    contact_email VARCHAR(255) NOT NULL,
+    logo_filename VARCHAR(255) NOT NULL
 );
 
 INSERT INTO organization (name, description, contact_email, logo_filename)
@@ -30,6 +11,7 @@ VALUES
 ('BrightFuture Builders', 'A nonprofit focused on improving community infrastructure through sustainable construction projects.', 'info@brightfuturebuilders.org', 'brightfuture-logo.png'),
 ('GreenHarvest Growers', 'An urban farming collective promoting food sustainability and education in local neighborhoods.', 'contact@greenharvest.org', 'greenharvest-logo.png'),
 ('UnityServe Volunteers', 'A volunteer coordination group supporting local charities and service initiatives.', 'hello@unityserve.org', 'unityserve-logo.png');
+
 
 CREATE TABLE projects (
     project_id SERIAL PRIMARY KEY,
@@ -41,7 +23,8 @@ CREATE TABLE projects (
     FOREIGN KEY (organization_id) REFERENCES organization(organization_id)
 );
 
-INSERT INTO projects (organization_id, title, description, location, project_date) VALUES
+INSERT INTO projects (organization_id, title, description, location, project_date)
+VALUES
 (1, 'Community Center Renovation', 'Renovate and expand the local community center to serve more families.', '123 Main St, Springfield', '2024-06-15'),
 (1, 'Safe Playground Construction', 'Build a safe, accessible playground for children in the neighborhood.', '456 Park Ave, Springfield', '2024-07-20'),
 (1, 'Bridge Repair Initiative', 'Repair critical infrastructure bridge in rural area.', '789 County Rd, Springfield', '2024-08-10'),
@@ -58,10 +41,18 @@ INSERT INTO projects (organization_id, title, description, location, project_dat
 (3, 'Food Bank Operation', 'Run and restock local food bank to serve hungry families.', '999 Food St, Harmony', '2024-07-08'),
 (3, 'Senior Care Initiative', 'Provide companionship and assistance to elderly residents.', '101 Elder Ave, Harmony', '2024-08-20');
 
+
 CREATE TABLE categories (
     category_id SERIAL PRIMARY KEY,
     category_name VARCHAR(100) NOT NULL UNIQUE
 );
+
+INSERT INTO categories (category_name)
+VALUES
+('Community Development'),
+('Environmental Conservation'),
+('Education & Youth');
+
 
 CREATE TABLE project_category (
     project_id INT NOT NULL,
@@ -71,12 +62,8 @@ CREATE TABLE project_category (
     FOREIGN KEY (category_id) REFERENCES categories(category_id)
 );
 
-INSERT INTO categories (category_name) VALUES
-('Community Development'),
-('Environmental Conservation'),
-('Education & Youth');
-
-INSERT INTO project_category (project_id, category_id) VALUES
+INSERT INTO project_category (project_id, category_id)
+VALUES
 (1, 1),
 (2, 1),
 (3, 1),
