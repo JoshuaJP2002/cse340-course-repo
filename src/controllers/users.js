@@ -61,13 +61,15 @@ const processLoginForm = async (req, res) => {
     }
 };
 
-const processLogout = async (req, res) => {
-    if (req.session.user) {
-        delete req.session.user;
-    }
+const processLogout = (req, res) => {
+    req.session.destroy((error) => {
+        if (error) {
+            console.error('Error during logout:', error);
+            return res.redirect('/');
+        }
 
-    req.flash('success', 'Logout successful!');
-    res.redirect('/login');
+        res.redirect('/login');
+    });
 };
 
 export {
