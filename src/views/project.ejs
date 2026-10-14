@@ -34,6 +34,35 @@
         <p>No categories available for this project.</p>
     <% } %>
 
+    <section class="volunteer-section">
+    <h3>Volunteer for This Project</h3>
+
+    <% if (user) { %>
+
+        <% if (isVolunteering) { %>
+            <p class="volunteer-status">
+                You are volunteering for this project!
+            </p>
+
+            <form action="/project/<%= project.project_id %>/remove-volunteer" method="POST">
+                <button type="submit" class="btn btn-danger">
+                    Remove Volunteering
+                </button>
+            </form>
+
+        <% } else { %>
+            <p>Would you like to help with this service project?</p>
+
+            <form action="/project/<%= project.project_id %>/volunteer" method="POST">
+                <button type="submit" class="btn btn-primary">
+                    Volunteer for This Project
+                </button>
+            </form>
+        <% } %>
+
+    <% } %>
+    </section>
+    
 <% if (user && user.role_name === 'admin') { %>
     <p>
         <a href="/edit-project/<%= project.project_id %>">

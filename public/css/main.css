@@ -175,3 +175,85 @@ footer {
     background-color: #d1ecf1;
     border-color: #bee5eb;
 }
+
+.volunteer-section {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f7f4ed;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+.volunteer-section h3 {
+    color: #12314a;
+    margin-bottom: 15px;
+}
+
+.volunteer-status {
+    color: #176b87;
+    font-weight: bold;
+}
+
+.volunteer-section button {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.volunteer-section .btn-primary {
+    background-color: #176b87;
+    color: white;
+}
+
+.volunteer-section .btn-danger {
+    background-color: #b83232;
+    color: white;
+}
+
+.volunteer-section button:hover {
+    opacity: 0.9;
+}
+
+.volunteer-project-list {
+    list-style: none;
+    padding: 0;
+}
+
+.volunteer-project-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    margin-bottom: 15px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.volunteer-project-item h3 {
+    margin-top: 0;
+    color: #12314a;
+}
+
+.volunteer-project-item a {
+    color: #176b87;
+    text-decoration: none;
+}
+
+.volunteer-project-item a:hover {
+    text-decoration: underline;
+}
+
+.volunteer-project-item p {
+    margin: 5px 0;
+}
+
+@media (max-width: 600px) {
+    .volunteer-project-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

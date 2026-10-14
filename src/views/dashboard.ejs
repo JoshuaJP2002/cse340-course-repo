@@ -1,17 +1,57 @@
+
 <%- include('partials/header') %>
 
 <main>
     <h1><%= title %></h1>
 
     <h2>Dashboard</h2>
+
     <p>Name: <%= name %></p>
     <p>Username: <%= email %></p>
 
     <% if (user && user.role_name === 'admin') { %>
-    <p>
-        <a href="/users">View Registered Users</a>
-    </p>
+        <p>
+            <a href="/users">View Registered Users</a>
+        </p>
     <% } %>
+
+    <!-- Volunteer Projects Section -->
+    <section class="volunteer-section">
+        <h2>My Volunteer Projects</h2>
+
+        <% if (volunteerProjects && volunteerProjects.length > 0) { %>
+
+            <ul class="volunteer-project-list">
+                <% volunteerProjects.forEach((project) => { %>
+                    <li class="volunteer-project-item">
+                        <div>
+                            <h3>
+                                <a href="/project/<%= project.project_id %>">
+                                    <%= project.title %>
+                                </a>
+                            </h3>
+
+                            <p>Location: <%= project.location %></p>
+                            <p>Date: <%= project.project_date %></p>
+                        </div>
+
+                        <form
+                            action="/project/<%= project.project_id %>/remove-volunteer"
+                            method="POST"
+                        >
+                            <button type="submit" class="btn btn-danger">
+                                Remove Volunteering
+                            </button>
+                        </form>
+                    </li>
+                <% }) %>
+            </ul>
+
+        <% } else { %>
+            <p>You have not volunteered for any projects yet.</p>
+            <a href="/projects">Explore Service Projects</a>
+        <% } %>
+    </section>
 </main>
 
 <%- include('partials/footer') %>
